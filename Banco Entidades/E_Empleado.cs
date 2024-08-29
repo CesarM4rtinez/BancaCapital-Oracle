@@ -8,15 +8,25 @@ namespace Banco.Entidades
 {
     public class E_Empleado
     {
-        public int      ID_EM          { get; set; }
-        public int      ID_CARGO_EM    { get; set; }
-        public int      ID_USER        { get; set; }
-        public int      ID_SUCURSAL    { get; set; }
-        public string   NOM_EMPLEADO   { get; set; }
-        public string   APE_PATE       { get; set; }
-        public string   APE_MATE       { get; set; }
-        public string   DIRECCION      { get; set; }
-        public string   DNI_EM         { get; set; }
-        public decimal  SUELDO         { get; set; }
+        public int      ID_PERSONA           { get; set; }
+        public int      ID_IDENTIFICACION    { get; set; }
+        public int      ID_PAIS              { get; set; }
+        public int      ID_ESTADO_CIVIL      { get; set; }
+        public int      ID_RANGO_INGRESO     { get; set; }
+        public int      ID_MONEDA            { get; set; }
+        public int      ID_SUCURSAL          { get; set; }
+        public int      ID_DEPTO             { get; set; }
+
+        public string   NOMBRE               { get; set; }
+        public string   APE_PATE             { get; set; }
+        public string   APE_MATE             { get; set; }
+        public DateTime FECHA_NAC            { get; set; }
+        public string   DIRECCION_RES        { get; set; }
+        public string   TEL_CEL              { get; set; }
+        public string   TEL_FIJO             { get; set; }
+        public string   CORREO_ELECTRONICO   { get; set; }
+        public float    SEXO                 { get; set; }
+        public string   NUM_IDENTIFICACION   { get; set; }
+        public DateTime FECHA_EXPIRACION_IDE { get; set; }
     }
 }

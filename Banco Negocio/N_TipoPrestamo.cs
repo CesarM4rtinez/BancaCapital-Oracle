@@ -22,23 +22,5 @@ namespace Banco.Negocio
             D_TipoPrestamo Datos = new D_TipoPrestamo();
             return Datos.Listado_tipoPrestamoCaido(cTexto);
         }
-
-        public static string Guardar_tipoPrestamo(int nOpcion, E_TipoPrestamo oCl)
-        {
-            D_TipoPrestamo Datos = new D_TipoPrestamo(); ;
-            return Datos.Guardar_tipoPrestamo(nOpcion, oCl);
-        }
-
-        public static string Eliminar_tipoPrestamo(int ID_TP_PRESTAMO)
-        {
-            D_TipoPrestamo Datos = new D_TipoPrestamo();
-            return Datos.Eliminar_tipoPrestamo(ID_TP_PRESTAMO);
-        }
-        
-        public static string Levantar_tipoPrestamoCaido(int ID_TP_PRESTAMO)
-        {
-            D_TipoPrestamo Datos = new D_TipoPrestamo();
-            return Datos.Levantar_tipoPrestamoCaido(ID_TP_PRESTAMO);
-        }
     }
 }

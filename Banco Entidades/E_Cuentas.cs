@@ -8,9 +8,10 @@ namespace Banco.Entidades
 {
     public class E_Cuentas
     {
-        public int    ID_CUENTA      { get; set; }
-        public int    ID_TIPO_CUENTA { get; set; }
-        public int    ID_CLIENTE     { get; set; }
-        public decimal SALDO_ACTUAL   { get; set; }
+        public int     ID_CUENTA          { get; set; }
+        public int     ID_TIPO_APLICACION { get; set; }
+        public int     ID_PERSONA         { get; set; }
+        public int     ID_SUCURSAL        { get; set; }
+        public decimal SALDO_CUENTA       { get; set; }
     }
 }

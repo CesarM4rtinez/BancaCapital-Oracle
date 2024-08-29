@@ -12,7 +12,7 @@ namespace Banco.Entidades
         public string USUARIO    { get; set; }
         public string CONTRASEÑA { get; set; }
 
-        public bool   ADMIN      { get; set; }
+        public bool   ADMINISTRADOR { get; set; }
         public bool   PRESTAMOS  { get; set; }
 
         public bool   CUENTAS    { get; set; }

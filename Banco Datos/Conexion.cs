@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Oracle.ManagedDataAccess.Client;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,41 +10,15 @@ namespace Banco.Datos
 {
     public class Conexion
     {
-        private string Base;
-        private string Servidor;
-        private string Usuario;
-        private string Clave;
-        private bool   Seguridad;
-        private static Conexion Con = null;
-
-        /// MODIFICAR CONEXIÓN - Server Name: **** 
-        ///                    - Login: *** 
-        ///                    - Password: **** 
-        /// DE  SQL SERVER  
-
-        private Conexion()
+        public static Conexion Con = null;
+        public OracleConnection CrearConexion()
         {
-            this.Base      = "SISTEMA_BANCARIO";
-            this.Servidor  = "OVI\\PRODUCCION";   /* "NOMBRE ACTUAL DEL PC\\INSTANCIA DE SQL SERVER" */
-            this.Usuario   = "sa";
-            this.Clave     = "C3$4r2003";
-            this.Seguridad = false;
-        }
-
-        public SqlConnection CrearConexion()
-        {
-            SqlConnection Cadena = new SqlConnection();
+            OracleConnection Cadena = new OracleConnection();
             try
             {
-                Cadena.ConnectionString = "Server=" + this.Servidor + "; Database=" + this.Base + ";";
-                if (Seguridad)
-                {
-                    Cadena.ConnectionString = Cadena.ConnectionString + "Integrated Security = SSPI"; // SSPI = Interfaz de Proveedor de Soporte de Seguridad. Para especificar la autenticación de Windows integrada al SQL Server.
-                }
-                else
-                {
-                    Cadena.ConnectionString = Cadena.ConnectionString + "User Id=" + this.Usuario + "; Password=" + this.Clave;
-                }
+                Cadena.ConnectionString = "Data Source=(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)" +
+                                          "(PORT=1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=xe)))" +
+                                          ";User Id=BANCACAPITAL;Password=SYS;";
             }
             catch (Exception ex)
             {

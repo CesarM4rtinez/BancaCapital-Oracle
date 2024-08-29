@@ -60,3 +60,42 @@ D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\B
 D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\Banco Negocio\obj\Debug\Banco.Negocio.csproj.CopyComplete
 D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\Banco Negocio\obj\Debug\Banco.Negocio.dll
 D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\Banco Negocio\obj\Debug\Banco.Negocio.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Negocio.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Negocio.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Datos.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Entidades.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Datos.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Datos.dll.config
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Entidades.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Negocio.csproj.AssemblyReference.cache
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Negocio.Properties.Resources.resources
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Negocio.csproj.GenerateResource.cache
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Negocio.csproj.CoreCompileInputs.cache
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Ne.2955BEF9.Up2Date
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Negocio.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\obj\Debug\Banco.Negocio.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Negocio.dll.config
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Buffers.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Formats.Asn1.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Memory.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Numerics.Vectors.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Text.Encodings.Web.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Text.Json.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.ValueTuple.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Banco.Entidades.dll.config
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Buffers.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Formats.Asn1.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Memory.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Numerics.Vectors.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Text.Encodings.Web.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Text.Json.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Negocio\bin\Debug\System.ValueTuple.xml

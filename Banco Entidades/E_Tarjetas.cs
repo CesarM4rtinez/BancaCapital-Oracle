@@ -8,10 +8,11 @@ namespace Banco.Entidades
 {
     public class E_Tarjetas
     {
-        public int       ID_TARJETA_CREDITO { get; set; }
-        public int       ID_CLIENTE         { get; set; }
+        public int       ID_TARJETA         { get; set; }
+        public int       ID_PERSONA         { get; set; }
         public int       ID_CUENTA          { get; set; }
         public int       ID_TP_TARJETA      { get; set; }
-        public string    SALDO_DISPONIBLE   { get; set; }
+        public decimal    SALDO              { get; set; }
+        public decimal    LIMITE             { get; set; }
     }
 }

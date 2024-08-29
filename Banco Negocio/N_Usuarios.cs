@@ -28,19 +28,6 @@ namespace Banco.Negocio
             D_Usuarios Datos = new D_Usuarios();
             return Datos.Guardar_us(nOpcion, oUs);
         }
-        
-        public static string Eliminar_us(int Codigo_us)
-        {
-            D_Usuarios Datos = new D_Usuarios();
-            return Datos.Eliminar_us(Codigo_us);
-        }
-
-        
-        public static string Levantar_UsuarioCaido(int Codigo_us)
-        {
-            D_Usuarios Datos = new D_Usuarios();
-            return Datos.Levantar_UsuarioCaido(Codigo_us);
-        }
 
         public static DataTable Login_us(string USUARIO, string CONTRASEÑA)
         {

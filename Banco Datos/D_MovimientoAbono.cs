@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Banco.Datos
 {
@@ -13,106 +14,53 @@ namespace Banco.Datos
     {
         public DataTable ListadoMV_abonoGenerales(string cTexto)
         {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
+            OracleConnection SqlCon = new OracleConnection();
             try
             {
-                SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbono", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
-                SQLCon.Open();
+                cTexto = "%" + cTexto + "%";
+                SqlCon = Conexion.getInstancia().CrearConexion();
+                OracleCommand Comando = new OracleCommand("select * from V_MOVIMIENTO_ABONO WHERE NOMBRE like '" + cTexto + "' ", SqlCon);
+                Comando.CommandType = CommandType.Text;
+                SqlCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);
                 return Tabla;
             }
             catch (Exception ex)
             {
+
                 throw ex;
             }
             finally
             {
-                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
-            }
-        }
-        
-        public DataTable Listado_AbonosCaidos(string cTexto)
-        {
-            SqlDataReader Resultado;
-            DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
-            try
-            {
-                SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbonoCaido", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
-                SQLCon.Open();
-                Resultado = Comando.ExecuteReader();
-                Tabla.Load(Resultado);
-                return Tabla;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
-            }
-        }
-
-        
-        public DataTable Listado_ClientesPrincipales(string cTexto)
-        {
-            SqlDataReader Resultado;
-            DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
-            try
-            {
-                SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbonoPri", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
-                SQLCon.Open();
-                Resultado = Comando.ExecuteReader();
-                Tabla.Load(Resultado);
-                return Tabla;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
+                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
             }
         }
 
         public string GuardarMV_abono(int nOpcion, E_MovimientoAbono oCl)
         {
             string Rpta = "";
-            SqlConnection SqlCon = new SqlConnection();
+            OracleConnection SqlCon = new OracleConnection();
             try
             {
                 SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_GuardarMovimientoAbono", SqlCon);
+                OracleCommand Comando = new OracleCommand("USP_GuardarMovimientoAbono", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@nOpcion",             SqlDbType.Int).Value = nOpcion;
-                Comando.Parameters.Add("@cID_MV_ABONO",        SqlDbType.Int).Value = oCl.ID_MV_ABONO;
-                Comando.Parameters.Add("@cID_CUENTA",          SqlDbType.Int).Value = oCl.ID_CUENTA;
-                Comando.Parameters.Add("@cID_PRESTAMO",        SqlDbType.Int).Value = oCl.ID_PRESTAMO;
-                Comando.Parameters.Add("@cID_CLIENTE",         SqlDbType.Int).Value = oCl.ID_CLIENTE;
-                Comando.Parameters.Add("@cID_EM",              SqlDbType.Int).Value = oCl.ID_EM;
-                Comando.Parameters.Add("@cID_SUCURSAL",        SqlDbType.Int).Value = oCl.ID_SUCURSAL;
-                Comando.Parameters.Add("@cMONTO_SALIDA",   SqlDbType.Decimal).Value = oCl.MONTO_SALIDA;
+                Comando.Parameters.Add("nOpcion",         OracleDbType.Int32).Value = nOpcion;
+                Comando.Parameters.Add("nId_MV_Abono",    OracleDbType.Int32).Value = oCl.ID_MV_ABONO;
+                Comando.Parameters.Add("nId_Cuenta",      OracleDbType.Int32).Value = oCl.ID_CUENTA;
+                Comando.Parameters.Add("nId_Prestamo",    OracleDbType.Int32).Value = oCl.ID_PRESTAMO;
+                Comando.Parameters.Add("nId_Persona",     OracleDbType.Int32).Value = oCl.ID_PERSONA;
+                Comando.Parameters.Add("nId_Sucursal",    OracleDbType.Int32).Value = oCl.ID_SUCURSAL;
+                Comando.Parameters.Add("nId_Transaccion", OracleDbType.Int32).Value = oCl.ID_TRANSACCION;
+                Comando.Parameters.Add("cDescripcion",    OracleDbType.Varchar2).Value = oCl.DESCRIPCION;
+                Comando.Parameters.Add("cTotalPagado",    OracleDbType.Decimal).Value = oCl.TOTAL_PAGADO;
 
                 SqlCon.Open();
-                Rpta = Comando.ExecuteNonQuery() >= 1 ? "OK" : "No se pudieron registrar los datos";
+                Comando.ExecuteNonQuery();
+                Rpta = "OK";
             }
             catch (Exception ex)
             {
@@ -125,67 +73,67 @@ namespace Banco.Datos
             return Rpta;
         }
 
-        public string EliminarMV_abono(int ID_MV_ABONO)
+        public DataTable Listado_persona()
         {
-            string Rpta = "";
-            SqlConnection SqlCon = new SqlConnection();
-            try
-            {
-                SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_EliminarMovimientoAbono", SqlCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@nID_MV_ABONO", SqlDbType.Int).Value = ID_MV_ABONO;
-                SqlCon.Open();
-                Rpta = Comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo eliminar el registro";
-            }
-            catch (Exception ex)
-            {
-
-                Rpta = ex.Message;
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-            return Rpta;
-        }
-        
-        public string Levantar_abonosCaidos(int ID_MV_ABONO)
-        {
-            string Rpta = "";
-            SqlConnection SqlCon = new SqlConnection();
-            try
-            {
-                SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_LevantarMovimientoAbono", SqlCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@nID_MV_ABONO", SqlDbType.Int).Value = ID_MV_ABONO;
-                SqlCon.Open();
-                Rpta = Comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo restablecer el registro";
-            }
-            catch (Exception ex)
-            {
-
-                Rpta = ex.Message;
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-            return Rpta;
-        }
-
-        public DataTable MV_abonoCuenta()
-        {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
+            OracleConnection SQLCon = new OracleConnection();
+            try
+            {
+                SQLCon = Conexion.getInstancia().CrearConexion();
+                OracleCommand Comando = new OracleCommand("SELECT ID_PERSONA,CAST(NOMBRE || ' ' || APE_PATE || ' ' || APE_MATE AS VARCHAR2(100)) AS NOMBRE FROM TB_PERSONAS WHERE ESTADO = 1 AND EMPLEADO = 0 ORDER BY NOMBRE ASC", SQLCon);
+                Comando.CommandType = CommandType.Text;
+                SQLCon.Open();
+                Resultado = Comando.ExecuteReader();
+                Tabla.Load(Resultado);
+                return Tabla;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
+            }
+        }
+
+        public DataTable Listado_prestamo()
+        {
+            OracleDataReader Resultado;
+            DataTable Tabla = new DataTable();
+            OracleConnection SQLCon = new OracleConnection();
+            try
+            {
+                SQLCon = Conexion.getInstancia().CrearConexion();
+                OracleCommand Comando = new OracleCommand("SELECT ID_PRESTAMO,CODIGO_PRESTAMO FROM TB_PRESTAMO WHERE ESTADO = 1", SQLCon);
+                Comando.CommandType = CommandType.Text;
+                SQLCon.Open();
+                Resultado = Comando.ExecuteReader();
+                Tabla.Load(Resultado);
+                return Tabla;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
+            }
+        }
+
+        public DataTable Listado_sucursal()
+        {
+            OracleDataReader Resultado;
+            DataTable Tabla = new DataTable();
+            OracleConnection SQLCon = new OracleConnection();
 
             try
             {
                 SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbono_Cuenta", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
+                OracleCommand Comando = new OracleCommand("SELECT ID_SUCURSAL,DIRECCION FROM TB_SUCURSAL WHERE ESTADO = 1 ORDER BY DIRECCION ASC", SQLCon);
+                Comando.CommandType = CommandType.Text;
                 SQLCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);
@@ -202,17 +150,17 @@ namespace Banco.Datos
             }
         }
 
-        public DataTable MV_abonoPrestamo()
+        public DataTable Listado_cuenta()
         {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
+            OracleConnection SQLCon = new OracleConnection();
 
             try
             {
                 SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbono_Prestamo", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
+                OracleCommand Comando = new OracleCommand("SELECT \r\n    A.ID_CUENTA,\r\n    CAST(B.NOMBRE || ' ' || B.APE_PATE || ' ' || B.APE_MATE AS VARCHAR2(100)) AS NOMBRE_CLIENTE\r\nFROM \r\n    TB_CUENTA A\r\nINNER JOIN\r\n    TB_PERSONAS B\r\nON\r\n    A.ID_PERSONA = B.ID_PERSONA\r\nWHERE \r\n    A.ESTADO = 1 AND B.EMPLEADO = 0 \r\nORDER BY \r\n    NOMBRE_CLIENTE ASC", SQLCon);
+                Comando.CommandType = CommandType.Text;
                 SQLCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);
@@ -229,71 +177,16 @@ namespace Banco.Datos
             }
         }
 
-        public DataTable MV_abonoCliente()
+        public DataTable Listado_transaccion()
         {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
+            OracleConnection SQLCon = new OracleConnection();
             try
             {
                 SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbono_Cliente", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                SQLCon.Open();
-                Resultado = Comando.ExecuteReader();
-                Tabla.Load(Resultado);
-                return Tabla;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
-            }
-        }
-
-        public DataTable MV_abonoEmpleado()
-        {
-            SqlDataReader Resultado;
-            DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
-            try
-            {
-                SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbono_Empleado", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                SQLCon.Open();
-                Resultado = Comando.ExecuteReader();
-                Tabla.Load(Resultado);
-                return Tabla;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-            finally
-            {
-                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
-            }
-        }
-
-        public DataTable MV_abonoSucursal()
-        {
-            SqlDataReader Resultado;
-            DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
-            try
-            {
-                SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoMovimientoAbono_Sucursal", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
+                OracleCommand Comando = new OracleCommand("SELECT ID_TRANSACCION,TIPO_TRANSACCION FROM TB_TRANSACCION WHERE ESTADO = 1", SQLCon);
+                Comando.CommandType = CommandType.Text;
                 SQLCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);

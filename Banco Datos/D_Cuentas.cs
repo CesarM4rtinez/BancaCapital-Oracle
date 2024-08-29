@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Client;
 
 namespace Banco.Datos
 {
@@ -13,43 +14,16 @@ namespace Banco.Datos
     {
         public DataTable Listado_cuenta(string cTexto)
         {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
+            OracleConnection SQLCon = new OracleConnection();
 
             try
             {
+                cTexto = "%" + cTexto + "%";
                 SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoCuentas", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
-                SQLCon.Open();
-                Resultado = Comando.ExecuteReader();
-                Tabla.Load(Resultado);
-                return Tabla;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
-            }
-        }
-        
-        public DataTable Listado_CuentasCaidas(string cTexto)
-        {
-            SqlDataReader Resultado;
-            DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
-            try
-            {
-                SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoCuentasCaidas", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@cTexto", SqlDbType.VarChar).Value = cTexto;
+                OracleCommand Comando = new OracleCommand("select * from V_CUENTAS WHERE NOMBRE like '" + cTexto + "' ", SQLCon);
+                Comando.CommandType = CommandType.Text;
                 SQLCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);
@@ -68,20 +42,22 @@ namespace Banco.Datos
         public string Guardar_cuenta(int nOpcion, E_Cuentas oCl)
         {
             string Rpta = "";
-            SqlConnection SqlCon = new SqlConnection();
+            OracleConnection SqlCon = new OracleConnection();
             try
             {
                 SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_GuardarCuenta", SqlCon);
+                OracleCommand Comando = new OracleCommand("USP_GuardarCuenta", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@nOpcion",         SqlDbType.Int).Value = nOpcion;
-                Comando.Parameters.Add("@cID_CUENTA",      SqlDbType.Int).Value = oCl.ID_CUENTA; // Añade el ID_CLIENTE para la actualización
-                Comando.Parameters.Add("@cID_CLIENTE",     SqlDbType.Int).Value = oCl.ID_CLIENTE;
-                Comando.Parameters.Add("@cID_TIPO_CUENTA", SqlDbType.Int).Value = oCl.ID_TIPO_CUENTA;
-                Comando.Parameters.Add("@cSALDO_ACTUAL",   SqlDbType.Int).Value = oCl.SALDO_ACTUAL;
+                Comando.Parameters.Add("nOpcion", OracleDbType.Int32).Value = nOpcion;
+                Comando.Parameters.Add("nId_Cuenta", OracleDbType.Int32).Value = oCl.ID_CUENTA; // Añade el ID_CLIENTE para la actualización
+                Comando.Parameters.Add("nId_TipoAplicacion", OracleDbType.Int32).Value = oCl.ID_TIPO_APLICACION;
+                Comando.Parameters.Add("nId_Persona", OracleDbType.Int32).Value = oCl.ID_PERSONA;
+                Comando.Parameters.Add("nId_Sucursal", OracleDbType.Int32).Value = oCl.ID_SUCURSAL;
+                Comando.Parameters.Add("cSaldoCuenta", OracleDbType.Decimal).Value = oCl.SALDO_CUENTA;
 
                 SqlCon.Open();
-                Rpta = Comando.ExecuteNonQuery() >= 1 ? "OK" : "No se pudieron registrar los datos";
+                Comando.ExecuteNonQuery();
+                Rpta = "OK";
             }
             catch (Exception ex)
             {
@@ -97,15 +73,16 @@ namespace Banco.Datos
         public string Eliminar_cuenta(int ID_CUENTA)
         {
             string Rpta = "";
-            SqlConnection SqlCon = new SqlConnection();
+            OracleConnection SqlCon = new OracleConnection();
             try
             {
                 SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_EliminarCuenta", SqlCon);
+                OracleCommand Comando = new OracleCommand("USP_EliminarCuenta", SqlCon);
                 Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@nID_CUENTA", SqlDbType.Int).Value = ID_CUENTA;
+                Comando.Parameters.Add("nId_Cuenta", OracleDbType.Int32).Value = ID_CUENTA;
                 SqlCon.Open();
-                Rpta = Comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo eliminar el registro";
+                Comando.ExecuteNonQuery();
+                Rpta = "OK";
             }
             catch (Exception ex)
             {
@@ -119,42 +96,16 @@ namespace Banco.Datos
             return Rpta;
         }
 
-        public string Levantar_cuenta(int ID_CUENTA)
+        public DataTable Listado_producto()
         {
-            string Rpta = "";
-            SqlConnection SqlCon = new SqlConnection();
-            try
-            {
-                SqlCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_LevantarCuenta", SqlCon);
-                Comando.CommandType = CommandType.StoredProcedure;
-                Comando.Parameters.Add("@nID_CUENTA", SqlDbType.Int).Value = ID_CUENTA;
-                SqlCon.Open();
-                Rpta = Comando.ExecuteNonQuery() == 1 ? "OK" : "No se pudo restablecer el registro";
-            }
-            catch (Exception ex)
-            {
-
-                Rpta = ex.Message;
-            }
-            finally
-            {
-                if (SqlCon.State == ConnectionState.Open) SqlCon.Close();
-            }
-            return Rpta;
-        }
-
-        public DataTable CuentaCliente()
-        {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
+            OracleConnection SQLCon = new OracleConnection();
             try
             {
                 SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoCuentaCliente", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
+                OracleCommand Comando = new OracleCommand("SELECT ID_TIPO_APLICACION, NOM_PRODUCTO FROM TB_PRODUCTO_APLICACION WHERE ESTADO = 1 ORDER BY NOM_PRODUCTO ASC", SQLCon);
+                Comando.CommandType = CommandType.Text;
                 SQLCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);
@@ -162,7 +113,6 @@ namespace Banco.Datos
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
             finally
@@ -171,17 +121,16 @@ namespace Banco.Datos
             }
         }
 
-        public DataTable CuentaTipoCuenta()
+        public DataTable Listado_personas()
         {
-            SqlDataReader Resultado;
+            OracleDataReader Resultado;
             DataTable Tabla = new DataTable();
-            SqlConnection SQLCon = new SqlConnection();
-
+            OracleConnection SQLCon = new OracleConnection();
             try
             {
                 SQLCon = Conexion.getInstancia().CrearConexion();
-                SqlCommand Comando = new SqlCommand("USP_ListadoTipoCuenta", SQLCon);
-                Comando.CommandType = CommandType.StoredProcedure;
+                OracleCommand Comando = new OracleCommand("SELECT ID_PERSONA,CAST(NOMBRE || ' ' || APE_PATE || ' ' || APE_MATE AS VARCHAR2(100)) AS NOMBRE FROM TB_PERSONAS WHERE ESTADO = 1 AND EMPLEADO = 0 ORDER BY NOMBRE ASC", SQLCon);
+                Comando.CommandType = CommandType.Text;
                 SQLCon.Open();
                 Resultado = Comando.ExecuteReader();
                 Tabla.Load(Resultado);
@@ -189,7 +138,31 @@ namespace Banco.Datos
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+            finally
+            {
+                if (SQLCon.State == ConnectionState.Open) SQLCon.Close();
+            }
+        }
 
+        public DataTable Listado_sucursal()
+        {
+            OracleDataReader Resultado;
+            DataTable Tabla = new DataTable();
+            OracleConnection SQLCon = new OracleConnection();
+            try
+            {
+                SQLCon = Conexion.getInstancia().CrearConexion();
+                OracleCommand Comando = new OracleCommand("SELECT ID_SUCURSAL,DIRECCION FROM TB_SUCURSAL WHERE ESTADO = 1 ORDER BY DIRECCION ASC", SQLCon);
+                Comando.CommandType = CommandType.Text;
+                SQLCon.Open();
+                Resultado = Comando.ExecuteReader();
+                Tabla.Load(Resultado);
+                return Tabla;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
             finally

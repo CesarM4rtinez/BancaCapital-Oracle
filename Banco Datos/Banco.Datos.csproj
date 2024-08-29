@@ -31,8 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.23.1, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\SisBancaCapital\packages\Oracle.ManagedDataAccess.23.4.0\lib\net472\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexion.cs" />
-    <Compile Include="D_CargoEmpleado.cs" />
     <Compile Include="D_Clientes.cs" />
     <Compile Include="D_Cuentas.cs" />
     <Compile Include="D_Empleado.cs" />
@@ -50,15 +53,9 @@
     <Compile Include="D_MovimientoCuenta.cs" />
     <Compile Include="D_MovimientoTarjeta.cs" />
     <Compile Include="D_Prestamos.cs" />
-    <Compile Include="D_Sucursal.cs" />
     <Compile Include="D_Tarjetas.cs" />
-    <Compile Include="D_TipoClientes.cs" />
-    <Compile Include="D_TipoCuentas.cs" />
-    <Compile Include="D_TipoPagos.cs" />
-    <Compile Include="D_TipoPrestamo.cs" />
     <Compile Include="D_Usuarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="D_TipoTarjetas.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -73,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

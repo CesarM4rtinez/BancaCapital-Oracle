@@ -44,3 +44,20 @@ D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\B
 D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\Banco Datos\bin\Debug\Banco.Entidades.dll
 D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\Banco Datos\bin\Debug\Banco.Entidades.pdb
 D:\Banco Proyecto\SISTEMA BANCARIO - CÉSAR OVIDIO MARTÍNEZ CHCIAS\Sistema C#\Banco Datos\obj\Debug\Banco.Datos.csproj.CopyComplete
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Banco.Datos.dll.config
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Banco.Datos.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Banco.Datos.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Banco.Entidades.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Banco.Entidades.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\obj\Debug\Banco.Datos.csproj.AssemblyReference.cache
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\obj\Debug\Banco.Datos.csproj.CoreCompileInputs.cache
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\obj\Debug\Banco.Da.71715BE9.Up2Date
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\obj\Debug\Banco.Datos.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\obj\Debug\Banco.Datos.pdb
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\System.Memory.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\System.Numerics.Vectors.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\System.Buffers.dll
+D:\Sistema de Banca en C# y Oracle\Sistema Bancario .NET C#\Banco Datos\bin\Debug\Banco.Entidades.dll.config

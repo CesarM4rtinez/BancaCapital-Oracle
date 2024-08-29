@@ -23,7 +23,7 @@ namespace Banco.Negocio
             return Datos.Listado_ClientesCaidos(cTexto);
         }
 
-        public static string Guardar_cl(int nOpcion, E_Clientes oCl)
+        public static string Guardar_cl(int nOpcion, E_Persona oCl)
         {
             D_Clientes Datos = new D_Clientes(); ;
             return Datos.Guardar_cl(nOpcion, oCl);
@@ -44,7 +44,7 @@ namespace Banco.Negocio
         public static DataTable TIPO_PERSONA()
         {
             D_Clientes Datos = new D_Clientes();
-            return Datos.TIPO_PERSONA();
+            return Datos.TIPO_CLIENTE();
         }
     }
 }
